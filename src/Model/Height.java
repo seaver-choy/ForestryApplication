@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package forestryapplication;
+package Model;
 
 /**
  *
  * @author Seaver
  */
-public class Land {
-    private int LENGTH = 50;
-    private int WIDTH = 50;
-    
-    private LandTile[][] landTiles = new LandTile[LENGTH][WIDTH];
+public enum Height {
+    TALL, MEDIUM, SHORT
 }
