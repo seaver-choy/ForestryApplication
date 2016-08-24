@@ -11,30 +11,11 @@ package Model;
  */
 
 
-public class Tree implements ForestElement
+public class Tree extends ForestElement
 {
-	private String species;
-    private int height;
-    private int space;
-    
-    public Tree(String species, int height)
+    public Tree(String species, String height, boolean shadeTolerant)
     {
-    	this.species = species;
-    	this.height = height;
-    	this.space = height;
-    	
+    	super(species, height, shadeTolerant);
     }
-
-	public String getSpecies() {
-		return species;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public int getSpace() {
-		return space;
-	}
 
 }

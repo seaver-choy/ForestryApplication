@@ -16,7 +16,37 @@ public class LandTile
 	
     private boolean taken = false;
     private ForestElement currForestElement;
-    private Location location;
     private int xPos, yPos;
+    
+    public LandTile(int xPos, int yPos)
+    {
+    	currForestElement = null;
+    	this.xPos = xPos;
+    	this.yPos = yPos;
+    }
+
+	public boolean isTaken() {
+		return taken;
+	}
+
+	public ForestElement getCurrForestElement() {
+		return currForestElement;
+	}
+	
+	public int getxPos() {
+		return xPos;
+	}
+
+	public int getyPos() {
+		return yPos;
+	}
+
+	public void setCurrForestElement(ForestElement currForestElement) 
+	{
+		this.currForestElement = currForestElement;
+		this.taken = true;
+	}
+    
+    
     
 }
