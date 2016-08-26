@@ -4,19 +4,21 @@ import java.util.Comparator;
 
 public abstract class ForestElement 
 {
-	public static int TALL = 6;
-	public static int MEDIUM = 3;
-	public static int SHORT = 1;
+	public static int TALL = 90;
+	public static int MEDIUM = 60;
+	public static int SHORT = 30;
 	
 	protected String species;
     protected int height;
     protected int spaceOccupied;
     protected boolean shadeTolerant;
+    protected int score;
     
     public ForestElement(String species, String height, boolean shadeTolerant)
     {
     	this.species = species;
     	this.shadeTolerant = shadeTolerant;
+    	this.score = 0;
     	
     	switch(height)
     	{
@@ -31,6 +33,11 @@ public abstract class ForestElement
 						 break;
     	}
     	
+    }
+    
+    public void resetScore()
+    {
+    	this.score = 0;
     }
     
     public String getSpecies() {
@@ -49,12 +56,17 @@ public abstract class ForestElement
 	{
 		if(shadeTolerant)
 		{
-			return height + 1;
+			return (score + height + 28);
 		}
 		else
 		{
-			return height;
+			return (score + height);
 		}
+	}
+
+	public void deductScore() {
+		this.score--;
+		
 	}
 }
 

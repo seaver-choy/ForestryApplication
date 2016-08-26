@@ -36,23 +36,42 @@ public class ForestryApplication
     				landTiles[j][i] = new LandTile(j,i);
     			pairUpLandTile(j,i);
     		}
+    		System.out.print("Row " + i + ": ");
+    		for(int k = 0; k < elements.size(); k++)
+        	{
+        		System.out.print(elements.get(k).getSpecies() + " " + elements.get(k).getElementScore() + " | ");
+        	}
+    		
+    		for(int k = 0; k < elements.size(); k++)
+    		{
+    			elements.get(k).resetScore();
+    		}
+
+        	Collections.sort(elements, new ElementComparator());
+        	
+        	System.out.println();
+        	System.out.println();
     	}
     }
     
-    public void pairUpLandTile(int posX, int posY)
+    public int pairUpLandTile(int posX, int posY)
     {
     	if(landTiles[posX][posY].isTaken())
-    		return;
+    		return 0;
     	else
     	{
     		//pair them up
-    		if(posX < 25)
+    		if(posX < (LENGTH * 1 / 2))
     		{
     			//chose a tree that has a lower score (suited to be in the south)
     			for(int i = elements.size() - 1; i >= 0; i--)
     			{
     				if(plantElement(elements.get(i), posX, posY))
-    					return;
+    				{
+    					elements.get(i).deductScore();
+    		        	Collections.sort(elements, new ElementComparator());
+    					return 0;
+    				}
     			}
     		}
     		else
@@ -61,10 +80,15 @@ public class ForestryApplication
     			for(int i = 0; i < elements.size(); i++)
     			{
     				if(plantElement(elements.get(i), posX, posY))
-    					return;
+    				{
+    					elements.get(i).deductScore();
+    		        	Collections.sort(elements, new ElementComparator());
+    					return 0;
+    				}
     			}
     		}
     	}
+    	return 0;
     }
     
     public boolean plantElement(ForestElement element, int x, int y)
@@ -128,19 +152,29 @@ public class ForestryApplication
     		inputs = input.split(",");
     		addElement(inputs[0], inputs[1], inputs[2], inputs[3]);
     	}*/
-    	elements.add(new Tree("TF", "TALL", false));
-    	elements.add(new Tree("SF", "SHORT", false));
-    	elements.add(new Tree("ST", "SHORT", true));
-    	elements.add(new Tree("MF", "MEDIUM", false));
-    	elements.add(new Tree("MT", "MEDIUM", true));
+    	elements.add(new Tree("TF1", "TALL", false));
+    	elements.add(new Tree("TF2", "TALL", false));
+    	elements.add(new Tree("TF3", "TALL", false));
+    	elements.add(new Tree("TF4", "TALL", false));
+    	elements.add(new Tree("SF1", "SHORT", false));
+    	elements.add(new Tree("SF2", "SHORT", false));
+    	elements.add(new Tree("SF3", "SHORT", false));
+    	elements.add(new Tree("ST1", "SHORT", true));
+    	elements.add(new Tree("MF1", "MEDIUM", false));
+    	elements.add(new Tree("MF2", "MEDIUM", false));
+    	elements.add(new Tree("MF3", "MEDIUM", false));
+    	elements.add(new Tree("MT1", "MEDIUM", true));
+    	elements.add(new Tree("MT2", "MEDIUM", true));
+    	elements.add(new Tree("MT3", "MEDIUM", true));
     	
     	//sort the trees in the list
     	Collections.sort(elements, new ElementComparator());
     	
     	for(int i = 0; i < elements.size(); i++)
     	{
-    		System.out.println(elements.get(i).getSpecies());
+    		System.out.print(elements.get(i).getSpecies() + " ");
     	}
+    	System.out.println();
     	System.out.println();
     	
     	fillupPlot();
