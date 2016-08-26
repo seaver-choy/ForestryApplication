@@ -4,9 +4,15 @@ import java.util.Comparator;
 
 public abstract class ForestElement 
 {
+<<<<<<< HEAD
 	public static int TALL = 90;
 	public static int MEDIUM = 60;
 	public static int SHORT = 30;
+=======
+	public static int TALL = 4;
+	public static int MEDIUM = 2;
+	public static int SHORT = 1;
+>>>>>>> parent of bfb56f6... Added variety to the trees planted
 	
 	protected String species;
     protected int height;

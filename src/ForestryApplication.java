@@ -32,9 +32,9 @@ public class ForestryApplication
     	{
     		for(int j = 0; j < WIDTH; j++)
     		{
-    			if(landTiles[j][i] == null)
-    				landTiles[j][i] = new LandTile(j,i);
-    			pairUpLandTile(j,i);
+    			if(landTiles[i][j] == null)
+    				landTiles[i][j] = new LandTile(i,j);
+    			pairUpLandTile(i,j);
     		}
     		System.out.print("Row " + i + ": ");
     		for(int k = 0; k < elements.size(); k++)
@@ -107,11 +107,6 @@ public class ForestryApplication
     		}
     	}
     	
-    	if(y-1 >= 0 && landTiles[x][y-1] != null && landTiles[x][y-1].getCurrForestElement() != null && landTiles[x][y-1].getCurrForestElement().equals(element))
-    		return false;
-    	if(x-1 >= 0 && landTiles[x-1][y] != null && landTiles[x-1][y].getCurrForestElement() != null && landTiles[x-1][y].getCurrForestElement().equals(element))
-    		return false;
-    	
     	for(int i = x; i < x + element.getSpace(); i++)
     	{
     		for(int j = y; j < y + element.getSpace(); j++)
@@ -152,6 +147,7 @@ public class ForestryApplication
     		inputs = input.split(",");
     		addElement(inputs[0], inputs[1], inputs[2], inputs[3]);
     	}*/
+<<<<<<< HEAD
     	elements.add(new Tree("TF1", "TALL", false));
     	elements.add(new Tree("TF2", "TALL", false));
     	elements.add(new Tree("TF3", "TALL", false));
@@ -166,6 +162,13 @@ public class ForestryApplication
     	elements.add(new Tree("MT1", "MEDIUM", true));
     	elements.add(new Tree("MT2", "MEDIUM", true));
     	elements.add(new Tree("MT3", "MEDIUM", true));
+=======
+    	elements.add(new Tree("A", "TALL", false));
+    	elements.add(new Tree("B", "SHORT", false));
+    	elements.add(new Tree("C", "SHORT", true));
+    	elements.add(new Tree("D", "MEDIUM", false));
+    	elements.add(new Tree("E", "MEDIUM", true));
+>>>>>>> parent of bfb56f6... Added variety to the trees planted
     	
     	//sort the trees in the list
     	Collections.sort(elements, new ElementComparator());
@@ -174,18 +177,18 @@ public class ForestryApplication
     	{
     		System.out.print(elements.get(i).getSpecies() + " ");
     	}
+<<<<<<< HEAD
     	System.out.println();
     	System.out.println();
+=======
+>>>>>>> parent of bfb56f6... Added variety to the trees planted
     	
     	fillupPlot();
     	for(int i = 0; i < LENGTH; i++)
     	{
     		for(int j = 0; j < WIDTH; j++)
     		{
-    			if(landTiles[i][j].getCurrForestElement() != null)
-    				System.out.print(landTiles[i][j].getCurrForestElement().getSpecies() + " ");
-    			else
-    				System.out.print("# ");
+    			System.out.print(landTiles[i][j].getCurrForestElement().getSpecies() + " ");
     		}
     		System.out.println();
     	}
