@@ -32,9 +32,9 @@ public class ForestryApplication
     	{
     		for(int j = 0; j < WIDTH; j++)
     		{
-    			if(landTiles[i][j] == null)
-    				landTiles[i][j] = new LandTile(i,j);
-    			pairUpLandTile(i,j);
+    			if(landTiles[j][i] == null)
+    				landTiles[j][i] = new LandTile(j,i);
+    			pairUpLandTile(j,i);
     		}
     	}
     }
@@ -83,6 +83,11 @@ public class ForestryApplication
     		}
     	}
     	
+    	if(y-1 >= 0 && landTiles[x][y-1] != null && landTiles[x][y-1].getCurrForestElement() != null && landTiles[x][y-1].getCurrForestElement().equals(element))
+    		return false;
+    	if(x-1 >= 0 && landTiles[x-1][y] != null && landTiles[x-1][y].getCurrForestElement() != null && landTiles[x-1][y].getCurrForestElement().equals(element))
+    		return false;
+    	
     	for(int i = x; i < x + element.getSpace(); i++)
     	{
     		for(int j = y; j < y + element.getSpace(); j++)
@@ -123,11 +128,11 @@ public class ForestryApplication
     		inputs = input.split(",");
     		addElement(inputs[0], inputs[1], inputs[2], inputs[3]);
     	}*/
-    	elements.add(new Tree("A", "TALL", false));
-    	elements.add(new Tree("B", "SHORT", false));
-    	elements.add(new Tree("C", "SHORT", true));
-    	elements.add(new Tree("D", "MEDIUM", false));
-    	elements.add(new Tree("E", "MEDIUM", true));
+    	elements.add(new Tree("TF", "TALL", false));
+    	elements.add(new Tree("SF", "SHORT", false));
+    	elements.add(new Tree("ST", "SHORT", true));
+    	elements.add(new Tree("MF", "MEDIUM", false));
+    	elements.add(new Tree("MT", "MEDIUM", true));
     	
     	//sort the trees in the list
     	Collections.sort(elements, new ElementComparator());
@@ -136,13 +141,17 @@ public class ForestryApplication
     	{
     		System.out.println(elements.get(i).getSpecies());
     	}
+    	System.out.println();
     	
     	fillupPlot();
     	for(int i = 0; i < LENGTH; i++)
     	{
     		for(int j = 0; j < WIDTH; j++)
     		{
-    			System.out.print(landTiles[i][j].getCurrForestElement().getSpecies() + " ");
+    			if(landTiles[i][j].getCurrForestElement() != null)
+    				System.out.print(landTiles[i][j].getCurrForestElement().getSpecies() + " ");
+    			else
+    				System.out.print("# ");
     		}
     		System.out.println();
     	}

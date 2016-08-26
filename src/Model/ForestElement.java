@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 public abstract class ForestElement 
 {
-	public static int TALL = 4;
-	public static int MEDIUM = 2;
+	public static int TALL = 6;
+	public static int MEDIUM = 3;
 	public static int SHORT = 1;
 	
 	protected String species;
