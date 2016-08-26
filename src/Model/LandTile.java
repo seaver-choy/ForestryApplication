@@ -14,13 +14,14 @@ public class LandTile
 	public static int NORTH = 1;
 	public static int SOUTH = 0;
 	
-    private boolean taken = false;
+    private boolean taken;
     private ForestElement currForestElement;
     private int xPos, yPos;
     
     public LandTile(int xPos, int yPos)
     {
     	currForestElement = null;
+    	taken = false;
     	this.xPos = xPos;
     	this.yPos = yPos;
     }
