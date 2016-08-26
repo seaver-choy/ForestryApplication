@@ -46,7 +46,7 @@ public class ForestryApplication
     	else
     	{
     		//pair them up
-    		if(posY >= 25)
+    		if(posX < 25)
     		{
     			//chose a tree that has a lower score (suited to be in the south)
     			for(int i = elements.size() - 1; i >= 0; i--)
@@ -131,6 +131,11 @@ public class ForestryApplication
     	
     	//sort the trees in the list
     	Collections.sort(elements, new ElementComparator());
+    	
+    	for(int i = 0; i < elements.size(); i++)
+    	{
+    		System.out.println(elements.get(i).getSpecies());
+    	}
     	
     	fillupPlot();
     	for(int i = 0; i < LENGTH; i++)
