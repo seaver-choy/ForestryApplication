@@ -161,7 +161,7 @@ public class ForestryApplication
     		{
     			switch(elements.get(i).getHeight())
     			{
-    				case 1: elements.get(i).setScore(28);
+    				case 1: elements.get(i).setScore(15);
     						break;
     				case 2: elements.get(i).setScore(30);
     						break;
@@ -248,7 +248,7 @@ public class ForestryApplication
     	{
     		shadeTolerant = true;
     	}
-    	if(type.equals("Tree"))
+    	if(type.toLowerCase().equals("tree"))
     	{
     		ForestElement element = new Tree(i1, i2, i3, shadeTolerant);
         	elements.add(element);
@@ -268,7 +268,6 @@ public class ForestryApplication
     	{
     		
     		inputs = input.split(",");
-    		System.out.println(inputs.length);
     		addElement(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
     		//sample inputs
     		//Tree,TF1,Tall Tree Sample1,TALL,SunDemanding
@@ -292,14 +291,6 @@ public class ForestryApplication
     	elements.add(new Tree("MT1", "Medium1", "MEDIUM", true));
     	elements.add(new Tree("MT2", "Medium1", "MEDIUM", true));
     	elements.add(new Tree("MT3", "Medium1", "MEDIUM", true));*/
-    	
-    	
-    	/*for(int i = 0; i < elements.size(); i++)
-    	{
-    		System.out.print(elements.get(i).getSpecies() + " ");
-    	}
-    	System.out.println();
-    	System.out.println();*/
     	
     	fillupPlot();
     	
