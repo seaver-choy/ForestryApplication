@@ -241,16 +241,16 @@ public class ForestryApplication
     	return true;
     }
     
-    public void addElement(String type, String i1, String i2, String i3)
+    public void addElement(String type, String i1, String i2, String i3, String i4)
     {
     	boolean shadeTolerant = false;
-    	if(i3.equals("ShadeTolerant"))
+    	if(i4.equals("ShadeTolerant"))
     	{
     		shadeTolerant = true;
     	}
     	if(type.equals("Tree"))
     	{
-    		ForestElement element = new Tree(i1, i2, shadeTolerant);
+    		ForestElement element = new Tree(i1, i2, i3, shadeTolerant);
         	elements.add(element);
     	}
     		
@@ -260,50 +260,75 @@ public class ForestryApplication
     {
     	landTiles = new LandTile[LENGTH][WIDTH];
     	elements = new ArrayList<ForestElement>();
-    	/*Scanner sc = new Scanner(System.in);
+    	
+    	Scanner sc = new Scanner(System.in);
     	String input;
     	String[] inputs;
-    	while(sc.hasNextLine())
+    	while((input = sc.nextLine()).length() > 0)
     	{
-    		input = sc.nextLine();
+    		
     		inputs = input.split(",");
-    		addElement(inputs[0], inputs[1], inputs[2], inputs[3]);
-    	}*/
-    	elements.add(new Tree("TF1", "TALL", false));
-    	elements.add(new Tree("TF2", "TALL", false));
-    	elements.add(new Tree("TF3", "TALL", false));
-    	elements.add(new Tree("TF4", "TALL", false));
-    	elements.add(new Tree("SF1", "SHORT", false));
-    	elements.add(new Tree("SF2", "SHORT", false));
-    	elements.add(new Tree("SF3", "SHORT", false));
-    	elements.add(new Tree("ST1", "SHORT", true));
-    	elements.add(new Tree("MF1", "MEDIUM", false));
-    	elements.add(new Tree("MF2", "MEDIUM", false));
-    	elements.add(new Tree("MF3", "MEDIUM", false));
-    	elements.add(new Tree("MT1", "MEDIUM", true));
-    	elements.add(new Tree("MT2", "MEDIUM", true));
-    	elements.add(new Tree("MT3", "MEDIUM", true));
+    		System.out.println(inputs.length);
+    		addElement(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
+    		//sample inputs
+    		//Tree,TF1,Tall Tree Sample1,TALL,SunDemanding
+    		//Tree,ST1,Short Tree Sample1,SHORT,ShadeTolerant
+    		//Tree,TF2,Tall Tree Sample2,TALL,SunDemanding
+    		//Tree,ST2,Short Tree Sample2,SHORT,ShadeTolerant
+    		  
+    	}
+    	
+    	/*elements.add(new Tree("TF1", "Tall1", "TALL", false));
+    	elements.add(new Tree("TF2", "Tall2", "TALL", false));
+    	elements.add(new Tree("TF3", "Tall3", "TALL", false));
+    	elements.add(new Tree("TF4", "Tall4", "TALL", false));
+    	elements.add(new Tree("SF1", "Short1", "SHORT", false));
+    	elements.add(new Tree("SF2", "Short2", "SHORT", false));
+    	elements.add(new Tree("SF3", "Short3", "SHORT", false));
+    	elements.add(new Tree("ST1", "Short4", "SHORT", true));
+    	elements.add(new Tree("MF1", "Medium1", "MEDIUM", false));
+    	elements.add(new Tree("MF2", "Medium1", "MEDIUM", false));
+    	elements.add(new Tree("MF3", "Medium1", "MEDIUM", false));
+    	elements.add(new Tree("MT1", "Medium1", "MEDIUM", true));
+    	elements.add(new Tree("MT2", "Medium1", "MEDIUM", true));
+    	elements.add(new Tree("MT3", "Medium1", "MEDIUM", true));*/
     	
     	
-    	for(int i = 0; i < elements.size(); i++)
+    	/*for(int i = 0; i < elements.size(); i++)
     	{
     		System.out.print(elements.get(i).getSpecies() + " ");
     	}
     	System.out.println();
-    	System.out.println();
+    	System.out.println();*/
     	
     	fillupPlot();
+    	
+    	// -- final output -- //
+    	String prev = "", print = "";
     	for(int i = 0; i < LENGTH; i++)
     	{
     		for(int j = 0; j < WIDTH; j++)
     		{
     			if(landTiles[i][j].getCurrForestElement() != null)
-    				System.out.print(landTiles[i][j].getCurrForestElement().getSpecies() + " ");
+    				print = landTiles[i][j].getCurrForestElement().getLabel();
     			else
-    				System.out.print("# ");
+    				print = "###";
+    			if(print.equals(prev) || j == 0)
+        			{
+        				System.out.print(" ");
+        			}
+        			else
+        			{
+        				System.out.print("|");
+        			}
+        			prev = print;
+    			System.out.print(print);
+    			
     		}
-    		System.out.println();
+    		prev = "";
+    		System.out.println("");
     	}
+    	// ------------------ //
     }
     
     public class ElementComparator implements Comparator<ForestElement> {

@@ -9,15 +9,17 @@ public abstract class ForestElement
 	public static int SHORT = 1;
 	
 	protected String species;
+	protected String label;
     protected int height;
     protected int spaceOccupied;
     protected boolean shadeTolerant;
     protected int score;
     protected int decrement;
     
-    public ForestElement(String species, String height, boolean shadeTolerant)
+    public ForestElement(String label, String species, String height, boolean shadeTolerant)
     {
     	this.species = species;
+    	this.label = label;
     	this.shadeTolerant = shadeTolerant;
     	this.score = 0;
     	this.decrement = 0;
@@ -35,6 +37,11 @@ public abstract class ForestElement
 						 break;
     	}
     	
+    }
+    
+    public String getLabel()
+    {
+    	return this.label;
     }
     
     public void resetScore()

@@ -13,9 +13,9 @@ package Model;
 
 public class Tree extends ForestElement
 {
-    public Tree(String species, String height, boolean shadeTolerant)
+    public Tree(String label, String species, String height, boolean shadeTolerant)
     {
-    	super(species, height, shadeTolerant);
+    	super(label, species, height, shadeTolerant);
     }
 
 }
